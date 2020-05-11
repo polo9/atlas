@@ -1,3 +1,3 @@
 
-from test.config.test_config_translator import TestConfigTranslator
-from test.config.test_execution import TestExecution
+from .test_config_translator import TestConfigTranslator
+from .test_execution import TestExecution
