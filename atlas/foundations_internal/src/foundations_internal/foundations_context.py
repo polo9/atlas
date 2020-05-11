@@ -35,12 +35,14 @@ class FoundationsContext(object):
     def set_project_name(self, project_name):
         self._provenance().project_name = project_name
 
+    #TODO refactor into property
     def job_id(self):
         return self.pipeline_context().file_name
 
     def set_job_id(self, value):
         self.pipeline_context().file_name = value
 
+    #TODO refactor into property
     def job_resources(self):
         return self._job_resources
 
