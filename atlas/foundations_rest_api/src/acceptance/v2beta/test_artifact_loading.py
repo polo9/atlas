@@ -33,11 +33,11 @@ class TestArtifactLoading(JobsTestsHelperMixinV2, APIAcceptanceTestCaseBase):
         klass._make_completed_job(klass._some_artifacts, random_uuid, start_timestamp=100000001, end_timestamp=100086400)
 
         klass._old_config = deepcopy(global_state.config_manager.config())
-        klass._old_context = global_state.foundations_context
+        klass._old_context = global_state.foundations_job
 
         global_state.config_manager.reset()
 
-        global_state.foundations_context = FoundationsJob()
+        global_state.foundations_job = FoundationsJob()
 
         klass._save_artifacts()
 
@@ -48,13 +48,13 @@ class TestArtifactLoading(JobsTestsHelperMixinV2, APIAcceptanceTestCaseBase):
         global_state.config_manager.reset()
         global_state.config_manager.config().update(klass._old_config)
 
-        global_state.foundations_context = klass._old_context
+        global_state.foundations_job = klass._old_context
 
     @classmethod
     def _set_job_id(klass, job_id):
         import foundations_contrib.global_state as global_state
 
-        job = global_state.foundations_context
+        job = global_state.foundations_job
         job.job_id = job_id
 
     @classmethod
