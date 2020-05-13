@@ -1,7 +1,6 @@
 
 
 import acceptance.config
-from acceptance.test_recursion_limit import TestRecursionLimit
 from acceptance.test_job_data_producers import TestJobDataProducers
 from acceptance.test_cli_init import TestCLIInit
 from acceptance.test_log_metric_outside_stage import TestLogMetricOutsideStage
