@@ -9,10 +9,10 @@ class JobsTestsHelperMixinV2(object):
     @classmethod
     def setUpClass(klass):
         from foundations_contrib.global_state import message_router
-        from foundations_internal.foundations_context import FoundationsContext
+        from foundations_internal.foundations_job import FoundationsJob
 
         klass._message_router = message_router
-        klass._foundations_context = FoundationsContext()
+        klass._foundations_context = FoundationsJob()
 
     @classmethod
     def _set_project_name(klass, project_name):
