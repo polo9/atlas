@@ -5,7 +5,7 @@ def cleanup():
     from os import getcwd, remove
     from os.path import isdir
     from glob import glob
-    from foundations_contrib.global_state import foundations_context
+    import foundations_contrib.global_state
     from foundations_internal.foundations_context import FoundationsContext
 
     tmp_dir = getcwd() + '/foundations_home/job_data'
@@ -15,4 +15,4 @@ def cleanup():
     for file in glob('*.tgz'):
         remove(file)
 
-    foundations_context = FoundationsContext()
+    foundations_contrib.global_state.foundations_context = FoundationsContext()
