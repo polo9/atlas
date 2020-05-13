@@ -106,17 +106,23 @@ def _at_exit_callback():
 
     global _exception_happened
 
-    upload_artifacts(current_foundations_context().job_id)
-    # This try-except block should be refactored at a later date
+    try:
+        upload_artifacts(current_foundations_context().job_id)
 
-    if _exception_happened:
-        FailedJob(
-            message_router,
-            current_foundations_context(),
-            {"type": Exception, "exception": "", "traceback": []},
-        ).push_message()
-    else:
-        CompleteJob(message_router, current_foundations_context()).push_message()
+        if _exception_happened:
+            FailedJob(
+                message_router,
+                current_foundations_context(),
+                {"type": Exception, "exception": "", "traceback": []},
+            ).push_message()
+        else:
+            CompleteJob(message_router, current_foundations_context()).push_message()
+
+    except ValueError:
+        _get_logger().warn(
+            "Job id has not been set; artifacts and job bundle will not be uploaded."
+            "Job status will not be pushed to tracker"
+        )
 
 
 def _set_job_state(foundations_context):
